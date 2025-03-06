@@ -15,6 +15,13 @@ class Dialog extends StatelessWidget {
   final bool? isSingleButton;
   final Color? backgroundColor;
   final Color? dividerColor;
+  final Size size;
+  final String? okText;
+  final String? cancelText;
+  final double? width;
+  final double? height;
+  final double? topPadding;
+  final double? bottomPadding;
 
   /// 커스텀 다이얼로그
   /// - [title]: 타이틀
@@ -31,6 +38,14 @@ class Dialog extends StatelessWidget {
   /// - (선택)[isSingleButton]: 확인 버튼만 있는 다이얼로그
   /// - (선택)[backgroundColor]: 다이얼로그 배경색
   /// - (선택)[dividerColor]: 버튼 구분선 색상
+  /// - [size]: MediaQuery.of(context).size
+  /// - (선택)[okText]: 확인 버튼 텍스트
+  /// - (선택)[cancelText]: 취소 버튼 텍스트
+  /// - (선택)[width]: 다이얼로그 너비
+  /// - (선택)[height]: 버튼 높이
+  /// - (선택)[topPadding]: 다이얼로그 상단 패딩
+  /// - (선택)[bottomPadding]: 다이얼로그 하단 패딩
+  /// ```
   Dialog({
     required this.title,
     required this.titleFontSize,
@@ -46,18 +61,26 @@ class Dialog extends StatelessWidget {
     this.isSingleButton,
     this.backgroundColor,
     this.dividerColor,
+    required this.size,
+    this.okText,
+    this.cancelText,
+    this.width,
+    this.height,
+    this.topPadding,
+    this.bottomPadding,
   });
 
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
 
     return AlertDialog(
+
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(radius ?? 0),
       ),
       backgroundColor: backgroundColor ?? Colors.white,
-      contentPadding: const EdgeInsets.only(top: 30, bottom: 30),
+      contentPadding: EdgeInsets.only(top: topPadding ?? 30, bottom: bottomPadding ?? 30),
+
       actionsPadding: EdgeInsets.zero,
       content: Column(
         mainAxisSize: MainAxisSize.min,
@@ -87,8 +110,8 @@ class Dialog extends StatelessWidget {
       ),
       actions: [
         Container(
-          width: size.width,
-          height: 48.1,
+          width: width ?? size.width,
+          height: height ?? 48.1,
           decoration: BoxDecoration(
             border: Border(
               top: BorderSide(
@@ -104,7 +127,7 @@ class Dialog extends StatelessWidget {
                   child: InkWell(
                     onTap: () => onPressedCancel(),
                     child: Container(
-                      height: 48.1,
+                      height: height ?? 48.1,
                       alignment: Alignment.center,
                       decoration: BoxDecoration(
                         border: Border(
@@ -115,7 +138,7 @@ class Dialog extends StatelessWidget {
                         ),
                       ),
                       child: Text(
-                        '취소',
+                        cancelText ?? '취소',
                         style: TextStyle(
                           fontSize: 17,
                           fontWeight: FontWeight.w400,
@@ -129,10 +152,10 @@ class Dialog extends StatelessWidget {
                 child: InkWell(
                   onTap: () => onPressedOK(),
                   child: Container(
-                    height: 48.1,
+                    height: height ?? 48,
                     alignment: Alignment.center,
                     child: Text(
-                      '확인',
+                      okText ?? '확인',
                       style: TextStyle(
                         fontSize: 17,
                         fontWeight: FontWeight.w700,
