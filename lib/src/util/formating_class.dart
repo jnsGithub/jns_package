@@ -1,16 +1,16 @@
 import 'package:intl/intl.dart';
 
 class Formating {
-  static String date(DateTime date) {
-    return DateFormat('yyyy-MM-dd').format(date);
+  static String date(DateTime date, String split) {
+    return DateFormat('yyyy${split}MM${split}dd').format(date);
   }
 
   static String time(DateTime date) {
     return DateFormat('HH:mm').format(date);
   }
 
-  static String dateTime(DateTime date) {
-    return DateFormat('yyyy-MM-dd HH:mm').format(date);
+  static String dateTime(DateTime date, String split) {
+    return DateFormat('yyyy${split}MM${split}dd HH:mm').format(date);
   }
 
   static String money(int money) {

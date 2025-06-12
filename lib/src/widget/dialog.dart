@@ -22,6 +22,8 @@ class Dialog extends StatelessWidget {
   final double? height;
   final double? topPadding;
   final double? bottomPadding;
+  final double? leftPadding;
+  final double? rightPadding;
 
   /// 커스텀 다이얼로그
   /// - [title]: 타이틀
@@ -68,18 +70,18 @@ class Dialog extends StatelessWidget {
     this.height,
     this.topPadding,
     this.bottomPadding,
+    this.leftPadding,
+    this.rightPadding
   });
 
   @override
   Widget build(BuildContext context) {
-
     return AlertDialog(
-
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(radius ?? 0),
       ),
       backgroundColor: backgroundColor ?? Colors.white,
-      contentPadding: EdgeInsets.only(top: topPadding ?? 30, bottom: bottomPadding ?? 30),
+      contentPadding: EdgeInsets.only(top: topPadding ?? 30, bottom: bottomPadding ?? 30, left: leftPadding ?? 40, right: rightPadding ?? 40),
 
       actionsPadding: EdgeInsets.zero,
       content: Column(

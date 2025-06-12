@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:material_symbols_icons/symbols.dart';
 
 class BottomFooter extends StatelessWidget {
   final String companyName;
@@ -212,6 +213,17 @@ class ServiceCenterView extends StatelessWidget {
           )
         ],
       ),
+    );
+  }
+}
+
+class MaterialIconButton extends StatelessWidget{
+
+  @override
+  Widget build(BuildContext context) {
+    return IconButton(
+      icon: Icon(Icons.add),
+      onPressed: (){},
     );
   }
 }
