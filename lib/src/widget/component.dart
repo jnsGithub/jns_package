@@ -90,6 +90,7 @@ class ConfirmButton extends StatelessWidget {
   final Color? textColor;
   final FontWeight? fontWeight;
   final double? fontSize;
+  EdgeInsets? padding;
 
   /// 확인 버튼
   /// - [width]: 버튼 너비
@@ -100,6 +101,7 @@ class ConfirmButton extends StatelessWidget {
   /// - (선택)[textColor]: 버튼 텍스트 색상
   /// - (선택)[fontWeight]: 버튼 텍스트 굵기
   /// - (선택)[fontSize]: 버튼 텍스트 크기
+  /// - (선택)[padding]: 패딩
   ConfirmButton({
     required this.text,
     required this.width,
@@ -110,6 +112,7 @@ class ConfirmButton extends StatelessWidget {
     this.textColor,
     this.fontWeight,
     this.fontSize,
+    this.padding
   });
 
   @override
@@ -117,8 +120,10 @@ class ConfirmButton extends StatelessWidget {
     return ElevatedButton(
       style: ElevatedButton.styleFrom(
         backgroundColor: color ?? Colors.blue,
+        fixedSize: Size(width, height),
         maximumSize: Size(width, height),
         minimumSize: Size(width, height),
+        padding: padding,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(radius ?? 0),
         ),
@@ -130,6 +135,7 @@ class ConfirmButton extends StatelessWidget {
           fontSize: fontSize ?? 16,
           color: textColor ?? Colors.white,
           fontWeight: fontWeight ?? FontWeight.w400,
+          letterSpacing: -0.5
         ),
       ),
     );

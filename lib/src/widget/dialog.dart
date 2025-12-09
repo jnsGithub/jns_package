@@ -4,9 +4,11 @@ class Dialog extends StatelessWidget {
   final String title;
   final double titleFontSize;
   final Color? titleTextColor;
+  final FontWeight titleFontWeight;
   final String? subTitle;
   final double? subTitleFontSize;
   final Color? subTitleTextColor;
+  final FontWeight subTitleFontWeight;
   final Function onPressedOK;
   final Function onPressedCancel;
   final double? radius;
@@ -20,18 +22,21 @@ class Dialog extends StatelessWidget {
   final String? cancelText;
   final double? width;
   final double? height;
+  final double? textHeight;
   final double? topPadding;
   final double? bottomPadding;
   final double? leftPadding;
   final double? rightPadding;
 
   /// 커스텀 다이얼로그
-  /// - [title]: 타이틀
+  /// - [title]: 타이틀 텍스트
   /// - [titleFontSize]: 타이틀 폰트 사이즈
   /// - (선택)[titleTextColor]: 타이틀 텍스트 색상
+  /// - (선택)[titleFontWeight]: 타이틀 폰트 굵기
   /// - (선택)[subTitle]: 서브 타이틀
   /// - (선택)[subTitleFontSize]: 서브 타이틀 폰트 사이즈
   /// - (선택)[subTitleTextColor]: 서브 타이틀 텍스트 색상
+  /// - (선택)[subTitleFontWeight]: 서브 타이틀 폰트 굵기
   /// - [onPressedOK]: 확인 버튼 클릭 시
   /// - [onPressedCancel]: 취소 버튼 클릭 시
   /// - (선택)[cancelColor]: 취소 버튼 텍스트 색상
@@ -45,16 +50,20 @@ class Dialog extends StatelessWidget {
   /// - (선택)[cancelText]: 취소 버튼 텍스트
   /// - (선택)[width]: 다이얼로그 너비
   /// - (선택)[height]: 버튼 높이
+  /// - (선택)[textHeight]: 텍스트 사이 간격
   /// - (선택)[topPadding]: 다이얼로그 상단 패딩
   /// - (선택)[bottomPadding]: 다이얼로그 하단 패딩
   /// ```
   Dialog({
+    /// 타이틀 텍스트
     required this.title,
     required this.titleFontSize,
     this.titleTextColor,
+    this.titleFontWeight = FontWeight.w600,
     this.subTitle,
     this.subTitleFontSize,
     this.subTitleTextColor,
+    this.subTitleFontWeight = FontWeight.w500,
     required this.onPressedOK,
     required this.onPressedCancel,
     this.cancelColor,
@@ -68,6 +77,7 @@ class Dialog extends StatelessWidget {
     this.cancelText,
     this.width,
     this.height,
+    this.textHeight,
     this.topPadding,
     this.bottomPadding,
     this.leftPadding,
@@ -93,11 +103,11 @@ class Dialog extends StatelessWidget {
             style: TextStyle(
               height: 1.5,
               fontSize: titleFontSize,
-              fontWeight: FontWeight.w600,
+              fontWeight: titleFontWeight,
               color: titleTextColor ?? Colors.black,
             ),),
           if(subTitle != null)
-            SizedBox(height: 10),
+            SizedBox(height: textHeight ?? 10,),
           if(subTitle != null)
             Text(
               subTitle!,
@@ -105,7 +115,7 @@ class Dialog extends StatelessWidget {
               style: TextStyle(
                   height: 1.5,
                   fontSize: subTitleFontSize ?? 16,
-                  fontWeight: FontWeight.w600,
+                  fontWeight: subTitleFontWeight,
                   color: subTitleTextColor ?? Colors.black
               ),),
         ],
